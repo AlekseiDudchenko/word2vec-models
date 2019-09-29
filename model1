@@ -1,0 +1,34 @@
+# coding: utf8
+
+import numpy as np
+import os
+from random import shuffle
+import re
+import urllib.request
+import zipfile
+import lxml.etree
+import codecs
+
+fileAllRecords = codecs.open (r'Path.txt',
+            "r",  encoding = 'utf-8')
+			
+allStrings = fileAllRecords.readlines()
+new_file = codecs.open(r'Path', 'w',   encoding = 'utf-8')
+
+for string in allStrings:
+    if len(string) > 20:
+        new_file.write(string)
+
+full_new_corpus = open(r'Path.txt', 'r',  encoding = 'utf-8')
+lines = full_new_corpus.readlines()
+
+sentences = []
+for sent_str in lines:
+    tokens = re.sub("[a-z0-9]+.,´-", " ", sent_str.lower()).split()
+    sentences.append(tokens)
+
+from gensim.models import Word2Vec
+
+model = Word2Vec(sentences=sentences, size=50, window=4, min_count=3, workers=4, sg=0)
+model.train(sentences, total_examples=len(sentences), epochs=100)
+model.save('model2.bin')
