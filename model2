@@ -40,6 +40,11 @@ def lemmatization_samples(samples):
 
 sentences = lemmatization_samples(sentences) # приводим все слова в выборках к леммам
 
+sentences = []
+for sent_str in lines:
+    tokens = re.sub("[a-z0-9]+.,´-", " ", sent_str.lower()).split()
+    sentences.append(tokens)
+
 from gensim.models import Word2Vec
 
 model = Word2Vec(sentences=sentences, size=50, window=4, min_count=3, workers=4, sg=0)
