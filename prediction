@@ -14,7 +14,7 @@ from matplotlib import pyplot as plt
 from sklearn.metrics import f1_score
 
 #get data in words
-some_data = pandas.read_csv(r".csv",
+some_data = pandas.read_csv(r"*.csv",
                             sep=' ; ', encoding = 'utf-8', engine='python', index_col=False)
 
 labels = some_data.iloc[:,0]
@@ -63,15 +63,12 @@ max_words_in_sample = words_in_sample(samples)
 from gensim.models import Word2Vec, KeyedVectors
 
 # my model
-#word2vecModel = Word2Vec.load("model.bin")
+#word2vecModel = Word2Vec.load("model_1.bin") #model_2.bin
 
 # rusvectors model
-#word2vecModel = KeyedVectors.load_word2vec_format(r"our_word2vec.model")    #, binary=True)
-
-word2vecModel = KeyedVectors.load(r"C:\Users\admin\Dropbox\1AspMedInfo\8. Helix\our_word2vec.model")    #, binary=True)
+#word2vecModel = KeyedVectors.load_word2vec_format(r"***.model") )
 
 from collections import defaultdict
-
 modelWord_from_word = dict()
 
 for inx in range(len(word2vecModel.wv.vocab)):
