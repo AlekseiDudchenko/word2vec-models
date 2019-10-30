@@ -31,4 +31,4 @@ from gensim.models import Word2Vec
 
 model = Word2Vec(sentences=sentences, size=50, window=4, min_count=3, workers=4, sg=0)
 model.train(sentences, total_examples=len(sentences), epochs=100)
-model.save('model2.bin')
+model.save('model_1.bin')
